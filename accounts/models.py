@@ -38,7 +38,6 @@ class Employee(models.Model):
         return self.name
 
 class SalesAgent(models.Model):
-    # 1-to-1 link back to the main Employee record
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
     commission_rate = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     total_sales = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
@@ -47,7 +46,6 @@ class SalesAgent(models.Model):
         return f"Sales Agent: {self.employee.name}"
 
 class CreditOfficer(models.Model):
-    # 1-to-1 link back to the main Employee record
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
     approval_limit = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     security_level = models.IntegerField(default=1)
