@@ -37,6 +37,24 @@ class Employee(models.Model):
     def __str__(self):
         return self.name
 
+class SalesAgent(models.Model):
+    # 1-to-1 link back to the main Employee record
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    commission_rate = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+    total_sales = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"Sales Agent: {self.employee.name}"
+
+class CreditOfficer(models.Model):
+    # 1-to-1 link back to the main Employee record
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    approval_limit = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    security_level = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"Credit Officer: {self.employee.name} (Level {self.security_level})"
+
 class Supplier(models.Model):
     name = models.CharField(max_length=100)
     contact_person = models.CharField(max_length=100, blank=True)
