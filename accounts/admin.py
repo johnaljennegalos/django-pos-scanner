@@ -17,7 +17,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address', 'date_created')
-    search_fields = ('name', 'phone_number', 'email')
+    search_fields = ('name', 'phone', 'email')
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
