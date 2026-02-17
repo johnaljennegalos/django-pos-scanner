@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+<style>
+    /* 🎨 OVERRIDING DJANGO'S DEFAULT CSS VARIABLES */
+    :root {
+        /* The main top header bar */
+        --header-bg: #111827; /* Very dark grey/black */
+        --header-color: #ffffff; /* White text */
+
+        /* The primary buttons (Save, Log in) and links */
+        --primary: #2563eb; /* A sleek tech blue */
+        --primary-fg: #ffffff;
+
+        /* Hover states */
+        --secondary: #1e3a8a; /* Darker blue for hovers */
+
+        /* The left sidebar (Module names) */
+        --breadcrumbs-bg: #1f2937;
+        --breadcrumbs-link-fg: #93c5fd;
+        --breadcrumbs-fg: #d1d5db;
+
+        /* Login screen button */
+        --default-button-bg: #2563eb;
+        --default-button-hover-bg: #1d4ed8;
+    }
+
+    /* Make the site header text bold and slightly larger */
+    #site-name {
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+</style>
+{% endblock %}
