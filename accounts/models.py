@@ -96,4 +96,35 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} | {self.product.name}"
 
+class Payment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    date_paid = models.DateTimeField(auto_now_add=True)
+    payment_type = models.CharField(max_length=100, choices=Order.PAYMENT_METHOD)
 
+    def __str__(self):
+        return f"Payment for Order #{self.order.id}"
+
+class CashPayment(models.Model):
+    payment = models.OneToOneField(Payment, on_delete=models.CASCADE)
+    cash_received = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    change_given = models.DecimalField(max_digits=10, decimal_places=2)
+
+class InstallmentPlan(models.Model):
+    payment = models.OneToOneField(Payment, on_delete=models.CASCADE)
+    term_months = models.IntegerField()
+    monthly_due = models.DecimalField(max_digits=10, decimal_places=2)
+    remaining_balance = models.DecimalField(max_digits=10, decimal_places=2)
+    next_due_date = models.DateField()
+    payment_status = models.CharField(max_length=100, choices=Order.ORDER_STATUS)
+
+class Invoice(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    or_number = models.CharField(max_length=100, unique=True)
+    invoice_date = models.DateTimeField(auto_now_add=True)
+    vat_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    issued_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Invoice {self.or_number}"
