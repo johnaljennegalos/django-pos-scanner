@@ -3,9 +3,6 @@ from . models import *
 
 # Register your models here.
 
-admin.site.site_header = 'Galos Gadget Hub Admin'
-admin.site.site_title = "Galos POS Portal"
-admin.site.index_title = "Welcome to the Galos POS System"
 
 @admin.register(Branch)
 class BranchAdmin(admin.ModelAdmin):
