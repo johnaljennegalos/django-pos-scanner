@@ -68,3 +68,8 @@ class CashPaymentAdmin(admin.ModelAdmin):
 class InstallmentPlanAdmin(admin.ModelAdmin):
     list_display = ('payment', 'term_months', 'monthly_due', 'remaining_balance', 'next_due_date', 'payment_status')
     list_filter = ('payment',)
+
+@admin.register(Supplier)
+class SupplierAdmin(admin.ModelAdmin):
+    list_display = ('name', 'contact_person', 'phone')
+    list_filter = ('name',)
