@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -26,3 +26,7 @@ def loginPage(request):
 
     # context = {}
     return render(request, 'accounts/login.html')
+
+def logoutPage(request):
+    logout(request)
+    return redirect('login')
