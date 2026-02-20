@@ -8,14 +8,18 @@
             <tr>
                 <th class="px-6 py-3">Supplier</th>
                 <th class="px-6 py-3">Product Name</th>
+                <th class="px-6 py-3">Category</th>
+                <th class="px-6 py-3">Quantity</th>
                 <th class="px-6 py-3">Price</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
-            {% for i in ps %}
+            {% for i in items %}
             <tr class="hover:bg-gray-50">
                 <td class="px-6 py-4">{{ i.product.supplier }}</td>
                 <td class="px-6 py-4 font-medium text-gray-900">{{ i.product.product_name }}</td>
+                <td class="px-6 py-4">{{ i.product.category }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900">{{ i.quantity }}</td>
                 <td class="px-6 py-4">₱{{ i.product.base_price }}</td>
             </tr>
             {% endfor %}

@@ -1,9 +1,10 @@
+from django.contrib.admin.templatetags.admin_list import items_for_result
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
-from .models import Product
+from .models import Product, Employee, Branch, BranchInventory
 
 
 # Create your views here.
@@ -33,6 +34,16 @@ def logoutPage(request):
     logout(request)
     return redirect('login')
 
-
+@login_required(login_url='login')
 def branchInventory(request):
-    return render(request, 'accounts/branch_inventory.html')
+    try:
+        login_employee = Employee.objects.get(user=request.user)
+        assigned_branch = login_employee.branch
+
+        items = BranchInventory.objects.filter(branch=assigned_branch)
+
+
+    except Employee.DoesNotExist:
+        items = BranchInventory.objects.none()
+
+    return render(request, 'accounts/branch_inventory.html', {'items':items})
