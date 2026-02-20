@@ -1,0 +1,26 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+            <tr>
+                <th class="px-6 py-3">Supplier</th>
+                <th class="px-6 py-3">Product Name</th>
+                <th class="px-6 py-3">Price</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+            {% for i in ps %}
+            <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4">{{ i.product.supplier }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900">{{ i.product.product_name }}</td>
+                <td class="px-6 py-4">₱{{ i.product.base_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -34,10 +34,5 @@ def logoutPage(request):
     return redirect('login')
 
 
-
-def productsPage(request):
-    ps = Product.objects.all()
-
-    context = {'ps': ps}
-
-    return render(request, 'accounts/products.html', context)
+def branchInventory(request):
+    return render(request, 'accounts/branch_inventory.html')
