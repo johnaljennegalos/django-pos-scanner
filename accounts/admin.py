@@ -22,7 +22,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('supplier', 'product_name', 'base_price', 'barcode')
+    list_display = ('supplier', 'product_name', 'category', 'base_price', 'barcode')
     search_fields = ('product_name', 'barcode')
 
 @admin.register(BranchInventory)
