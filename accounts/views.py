@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
+from .models import Product
+
 
 # Create your views here.
 
@@ -30,3 +32,12 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('login')
+
+
+
+def productsPage(request):
+    ps = Product.objects.all()
+
+    context = {'ps': ps}
+
+    return render(request, 'accounts/products.html', context)
