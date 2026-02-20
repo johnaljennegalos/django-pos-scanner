@@ -40,7 +40,7 @@ def branchInventory(request):
         login_employee = Employee.objects.get(user=request.user)
         assigned_branch = login_employee.branch
 
-        items = BranchInventory.objects.filter(branch=assigned_branch)
+        items = BranchInventory.objects.filter(branch=assigned_branch).select_related('product', 'product__supplier')
 
 
     except Employee.DoesNotExist:
