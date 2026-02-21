@@ -19,6 +19,9 @@
         <tbody class="divide-y divide-gray-200">
             {% for i in items %}
             <tr class="hover:bg-gray-50">
+                {% if is_manager %}
+                <td class="px-6 py-4 font-medium text-gray-900">{{ i.branch.name }}</td>
+                {% endif %}
                 <td class="px-6 py-4">{{ i.product.supplier }}</td>
                 <td class="px-6 py-4 font-medium text-gray-900">{{ i.product.product_name }}</td>
                 <td class="px-6 py-4">{{ i.product.category }}</td>
