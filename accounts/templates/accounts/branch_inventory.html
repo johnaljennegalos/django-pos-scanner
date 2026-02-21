@@ -14,6 +14,7 @@
                 <th class="px-6 py-3">Category</th>
                 <th class="px-6 py-3">Quantity</th>
                 <th class="px-6 py-3">Price</th>
+                <th class="px-6 py-3">Barcode</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
@@ -27,6 +28,7 @@
                 <td class="px-6 py-4">{{ i.product.category }}</td>
                 <td class="px-6 py-4 font-medium text-gray-900">{{ i.quantity }}</td>
                 <td class="px-6 py-4">₱{{ i.product.base_price }}</td>
+                <td class="px-6 py-4 font-medium text-gray-900">{{ i.product.barcode }}</td>
             </tr>
             {% endfor %}
         </tbody>
