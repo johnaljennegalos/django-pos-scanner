@@ -36,14 +36,24 @@ def logoutPage(request):
 
 @login_required(login_url='login')
 def branchInventory(request):
-    try:
-        login_employee = Employee.objects.get(user=request.user)
-        assigned_branch = login_employee.branch
+    is_manager = request.user.is_superuser or hasattr(request.user, 'employee') and request.user.employee.role == 'Manager'
 
-        items = BranchInventory.objects.filter(branch=assigned_branch).select_related('product', 'product__supplier')
+    if is_manager:
+        items = BranchInventory.objects.all().select_related('branch', 'product')
+        assigned_branch = 'All Branches'
+    else:
+        try:
+            login_employee = Employee.objects.get(user=request.user)
+            assigned_branch = login_employee.branch
 
+            items = BranchInventory.objects.filter(branch=assigned_branch).select_related('product', 'product__supplier')
 
-    except Employee.DoesNotExist:
-        items = BranchInventory.objects.none()
+        except Employee.DoesNotExist:
+            items = BranchInventory.objects.none()
+            assigned_branch = 'None assigned'
 
-    return render(request, 'accounts/branch_inventory.html', {'items':items})
+    return render(request, 'accounts/branch_inventory.html', {
+        'items':items,
+        'assigned_branch':assigned_branch,
+        'is_manager':is_manager,}
+        )

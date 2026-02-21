@@ -6,6 +6,9 @@
     <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100">
             <tr>
+                {% if is_manager %}
+                <th class="px-6 py-3">Branch</th>
+                {% endif %}
                 <th class="px-6 py-3">Supplier</th>
                 <th class="px-6 py-3">Product Name</th>
                 <th class="px-6 py-3">Category</th>
