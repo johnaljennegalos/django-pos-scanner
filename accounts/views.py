@@ -813,8 +813,9 @@ def scanProduct(request):
         'id': inventory_item.product.id,
         'name': inventory_item.product.product_name,
         'price': str(inventory_item.product.base_price),
+        'category': inventory_item.product.category,
         'stock': inventory_item.product.min_stock_level,
-        'image': inventory_item.product.image.url,
+        'image': inventory_item.product.image.url if inventory_item.product.image else None,
     })
 
 @transaction.atomic
